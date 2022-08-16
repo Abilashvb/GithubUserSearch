@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import { Button, Col, Form } from "react-bootstrap";
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-
+import AppContext from "../AppContext/AppContext";
 
 const PageHeader: React.FunctionComponent = () => {
+    const { onSearchClick } = useContext(AppContext);
+
+    const onFormSubmit = useCallback((event: any) => {
+        const form = event.currentTarget;
+        event.preventDefault();
+        event.stopPropagation();
+        const formData = new FormData(event.target),
+            formDataObj: any = Object.fromEntries(formData.entries());
+        onSearchClick(formDataObj.searchText);
+
+    }, []);
 
     return (
-        <Form>
+        <Form onSubmit={onFormSubmit}>
             <Row xs={1} md={12}>
                 <Col md="10">
                     <Form.Control

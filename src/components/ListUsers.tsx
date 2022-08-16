@@ -7,42 +7,42 @@ import Counter from "./common/Counter";
 import { Messages } from "../const/common";
 
 const ListUsers: React.FunctionComponent = () => {
-    const { initialUser } = useContext(AppContext);
+    const { activeUser } = useContext(AppContext);
 
     return (
         <Row xs={1} md={12}>
-            <Col md="3"><img src={initialUser?.avatar_url} width="100px" /></Col>
+            <Col md="3"><img src={activeUser?.avatar_url} width="100px" /></Col>
             <Col md="9">
                 <div className="userInfoHolder">
-                    <div>{initialUser?.name}</div>
-                    <div>{initialUser?.created_at &&
-                        `Joined at ${new Date(initialUser.created_at).toJSON().slice(0, 10)}`}
+                    <div>{activeUser?.name}</div>
+                    <div>{activeUser?.created_at &&
+                        `Joined at ${new Date(activeUser.created_at).toJSON().slice(0, 10)}`}
                     </div>
-                    <div>{initialUser?.login}</div>
+                    <div>{activeUser?.login}</div>
                     <div className="userBio">
-                        {initialUser?.bio ? initialUser.bio : `This Profile has no bio`}
+                        {activeUser?.bio ? activeUser.bio : `This Profile has no bio`}
                     </div>
                 </div>
                 <Row md="12" className="userDataCount">
-                    <Counter counterValue={20} title={"Repos"} />
-                    <Counter counterValue={3426} title={"Followers"} />
-                    <Counter counterValue={4} title={"Following"} />
+                    <Counter counterValue={activeUser?.public_repos || 0} title={"Repos"} />
+                    <Counter counterValue={activeUser?.followers || 0} title={"Followers"} />
+                    <Counter counterValue={activeUser?.following || 0} title={"Following"} />
                 </Row>
                 <Row md="12" className="userDataCount">
                     <Col md="6">
-                        <GeoAltFill size={16} /> {initialUser.location ?
-                            initialUser.location : Messages.notAvailable}
+                        <GeoAltFill size={16} /> {activeUser.location ?
+                            activeUser.location : Messages.notAvailable}
                     </Col>
                     <Col md="6">
-                        <Twitter size={16} /> {initialUser.twitter_username ?
-                            initialUser.twitter_username : Messages.notAvailable}
+                        <Twitter size={16} /> {activeUser.twitter_username ?
+                            activeUser.twitter_username : Messages.notAvailable}
                     </Col>
-                    <Col md="6"><Link45deg size={16} /> {initialUser.blog ?
-                        initialUser.blog : Messages.notAvailable}
+                    <Col md="6"><Link45deg size={16} /> {activeUser.blog ?
+                        activeUser.blog : Messages.notAvailable}
                     </Col>
                     <Col md="6"><Building size={16} />
-                        {initialUser.company ?
-                            <a href={getCompanyLink(initialUser.company)}> {initialUser.company}</a>
+                        {activeUser.company ?
+                            <a href={getCompanyLink(activeUser.company)}> {activeUser.company}</a>
                             : Messages.notAvailable}
                     </Col>
                 </Row>

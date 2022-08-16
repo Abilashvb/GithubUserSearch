@@ -1,22 +1,30 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { Config } from "../const/common";
 import { IUser } from "../schemas/userSchema";
-import { getInitialUser } from "../services/userServices";
+import { getUserData } from "../services/userServices";
 import AppContext from "./AppContext";
 const AppProvider: React.FC<IProps> = (props) => {
 
-  const [initialUser, setInitialUser] = useState<IUser>({});
+  const [activeUser, setActiveUser] = useState<IUser>({});
 
   useEffect(() => {
-    getInitialUser().then(res => {
-      setInitialUser(res);
-    })
+    getUserData(Config.defaultUser).then(res => {
+      setActiveUser(res);
+    });
+  }, []);
+
+  const onSearchClick = useCallback((searchString: string) => {
+    getUserData(searchString).then(res => {
+      setActiveUser(res);
+    });
   }, []);
 
   return (
     <AppContext.Provider
       value={{
         siteUrl: props.siteUrl,
-        initialUser
+        activeUser,
+        onSearchClick
       }}
     >
       {props.children}

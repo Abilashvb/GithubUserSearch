@@ -25,5 +25,8 @@ export interface IUser {
     created_at?: any;
     twitter_username?: string;
     company?: string;
+    followers?: number;
+    following?: number;
+    public_repos?: number;
     [key: string]: any;
 }

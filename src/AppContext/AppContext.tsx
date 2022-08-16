@@ -3,12 +3,14 @@ import { IUser } from "../schemas/userSchema";
 
 export interface IAppContext {
     siteUrl: string;
-    initialUser: IUser;
+    activeUser: IUser;
+    onSearchClick: any;
 }
 
 const AppContext = React.createContext<IAppContext>({
     siteUrl: "",
-    initialUser: {},
+    activeUser: {},
+    onSearchClick: undefined
 });
 
 export default AppContext;
