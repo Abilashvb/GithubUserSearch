@@ -17,5 +17,13 @@ export interface IUser {
     subscriptions_url?: string;
     type?: string;
     url?: string;
+    blog?: string;
+    location?: string;
+    email?: string;
+    bio?: string,
+    name?: string;
+    created_at?: any;
+    twitter_username?: string;
+    company?: string;
     [key: string]: any;
 }
