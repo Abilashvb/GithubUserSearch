@@ -1,11 +1,106 @@
 .layoutBody {
     margin: auto;
     width: 60%;
-    border: 3px solid #73AD21;
     padding: 10px;
 }
 
 .navHeader {
     display: flex;
     justify-content: space-between;
+    padding: 20px;
+}
+
+.darkAppBody {
+    background-color: #141D2F;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    position: fixed;
+    color: #ffffff;
+}
+.lightAppBody {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    position: fixed;
+    color: #141D2F;
+}
+
+.detailsHolder {
+    background: #1E2A47;
+    padding: 20px 10px 20px 10px;
+    border-radius: 15px;
+}
+
+.pageHeader {
+    background: #1E2A47;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.userInfoHolder {
+    display: flex;
+    justify-content: space-between;
+}
+
+.userInfoHolder h1 {
+    font-size: 28px;
+}
+
+.subText {
+    color: #c2bebe;
+}
+
+.login {
+    color: #0079FF
+}
+
+.bioHolder {
+    color: #c2bebe;
+    margin: 20px 0 20px 0;
+}
+
+.bioNotFound {
+    color: #4B6A9B;
+    margin: 20px 0 20px 0;
+}
+
+.itemNotFound {
+    color: #4B6A9B;
+}
+
+.userDataCount {
+    background: #141D2F;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.footer {
+    margin: 20px 0 20px 0;
+}
+
+.footer div {
+    padding-bottom: 10px;
+}
+
+.profileImage {
+    clip-path: circle();
+}
+
+.searchBtn {
+    background: #0079FF;
+    height: 38px;
+    font-size: 15px;
+}
+
+.searchBarDark {
+    background: #1e2a47;
+    color: #fff;
+    border: none
 }

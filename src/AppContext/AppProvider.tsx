@@ -6,6 +6,7 @@ import AppContext from "./AppContext";
 const AppProvider: React.FC<IProps> = (props) => {
 
   const [activeUser, setActiveUser] = useState<IUser>({});
+  const [isLightTheme, setIsLightTheme] = useState<boolean>(false);
 
   useEffect(() => {
     getUserData(Config.defaultUser).then(res => {
@@ -24,7 +25,9 @@ const AppProvider: React.FC<IProps> = (props) => {
       value={{
         siteUrl: props.siteUrl,
         activeUser,
-        onSearchClick
+        onSearchClick,
+        isLightTheme,
+        setIsLightTheme
       }}
     >
       {props.children}

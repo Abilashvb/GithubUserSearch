@@ -1,6 +1,7 @@
 import React, { useCallback, useContext } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import Row from 'react-bootstrap/Row';
+import './Style.css';
 import AppContext from "../AppContext/AppContext";
 
 const PageHeader: React.FunctionComponent = () => {
@@ -17,27 +18,30 @@ const PageHeader: React.FunctionComponent = () => {
     }, []);
 
     return (
-        <Form onSubmit={onFormSubmit}>
-            <Row xs={1} md={12}>
-                <Col md="10">
-                    <Form.Control
-                        name={"searchText"}
-                        required
-                        type={"text"}
-                        placeholder={"Search Users"}
-                    />
-                </Col>
-                <Col md="2">
-                    <Button
-                        variant="secondary"
-                        size="lg" className="footerBtn"
-                        type="submit"
-                    >
-                        Search
-                    </Button>
-                </Col>
-            </Row>
-        </Form>
+        <Row xs={1} md={12} className="pageHeader">
+            <Form onSubmit={onFormSubmit}>
+                <Row xs={1} md={12}>
+                    <Col md="10">
+                        <Form.Control
+                            name={"searchText"}
+                            required
+                            type={"text"}
+                            placeholder={"Search GitHub username..."}
+                            className="searchBarDark"
+                        />
+                    </Col>
+                    <Col md="2" >
+                        <Button
+                            variant="secondary"
+                            size="lg" className="searchBtn"
+                            type="submit"
+                        >
+                            Search
+                        </Button>
+                    </Col>
+                </Row>
+            </Form>
+        </Row>
     )
 }
 
