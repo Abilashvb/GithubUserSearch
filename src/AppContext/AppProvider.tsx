@@ -3,21 +3,34 @@ import { Config } from "../const/common";
 import { IUser } from "../schemas/userSchema";
 import { getUserData } from "../services/userServices";
 import AppContext from "./AppContext";
-const AppProvider: React.FC<IProps> = (props) => {
 
+const AppProvider: React.FC<IProps> = (props) => {
   const [activeUser, setActiveUser] = useState<IUser>({});
   const [isLightTheme, setIsLightTheme] = useState<boolean>(false);
+  const [isUserFound, setIsUserFound] = useState<boolean>(true);
 
   useEffect(() => {
     getUserData(Config.defaultUser).then(res => {
+      setIsUserFound(true);
       setActiveUser(res);
-    });
+    }).catch(err => {
+      if (err.response.status === 404) {
+        setActiveUser({});
+        setIsUserFound(false);
+      }
+    })
   }, []);
 
   const onSearchClick = useCallback((searchString: string) => {
     getUserData(searchString).then(res => {
+      setIsUserFound(true);
       setActiveUser(res);
-    });
+    }).catch(err => {
+      if (err.response.status === 404) {
+        setActiveUser({});
+        setIsUserFound(false);
+      }
+    })
   }, []);
 
   return (
@@ -27,7 +40,8 @@ const AppProvider: React.FC<IProps> = (props) => {
         activeUser,
         onSearchClick,
         isLightTheme,
-        setIsLightTheme
+        setIsLightTheme,
+        isUserFound
       }}
     >
       {props.children}

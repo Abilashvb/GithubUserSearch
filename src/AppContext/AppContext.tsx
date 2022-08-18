@@ -7,6 +7,7 @@ export interface IAppContext {
     onSearchClick: any;
     isLightTheme: boolean;
     setIsLightTheme: any;
+    isUserFound: boolean;
 }
 
 const AppContext = React.createContext<IAppContext>({
@@ -14,7 +15,8 @@ const AppContext = React.createContext<IAppContext>({
     activeUser: {},
     onSearchClick: undefined,
     isLightTheme: false,
-    setIsLightTheme: undefined
+    setIsLightTheme: undefined,
+    isUserFound: true
 });
 
 export default AppContext;

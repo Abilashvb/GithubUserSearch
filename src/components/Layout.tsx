@@ -14,7 +14,6 @@ const Layout: React.FunctionComponent = (props) => {
     }, []);
 
     const onLightThemeClick = useCallback(() => {
-        debugger;
         setIsLightTheme(true);
     }, []);
 
@@ -30,11 +29,11 @@ const Layout: React.FunctionComponent = (props) => {
                         <Col className="navHeader">
                             <div>DevFinder</div>
                             {isLightTheme ? (
-                                <div onClick={onDarkThemeClick}>
+                                <div onClick={onDarkThemeClick} className="themeBtn">
                                     <Moon size={16} /> Dark
                                 </div>
                             ) : (
-                                <div onClick={onLightThemeClick}>
+                                <div onClick={onLightThemeClick} className="themeBtn">
                                     <BrightnessHigh size={16} /> Light
                                 </div>
 

@@ -5,7 +5,7 @@ import './Style.css';
 import AppContext from "../AppContext/AppContext";
 
 const PageHeader: React.FunctionComponent = () => {
-    const { onSearchClick } = useContext(AppContext);
+    const { onSearchClick, isLightTheme } = useContext(AppContext);
 
     const onFormSubmit = useCallback((event: any) => {
         const form = event.currentTarget;
@@ -18,7 +18,7 @@ const PageHeader: React.FunctionComponent = () => {
     }, []);
 
     return (
-        <Row xs={1} md={12} className="pageHeader">
+        <Row xs={1} md={12} className={isLightTheme ? "pageHeaderLight" : "pageHeaderDark"}>
             <Form onSubmit={onFormSubmit}>
                 <Row xs={1} md={12}>
                     <Col md="10">
@@ -27,7 +27,7 @@ const PageHeader: React.FunctionComponent = () => {
                             required
                             type={"text"}
                             placeholder={"Search GitHub username..."}
-                            className="searchBarDark"
+                            className={isLightTheme ? "" : "searchBarDark"}
                         />
                     </Col>
                     <Col md="2" >
