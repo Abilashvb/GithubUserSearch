@@ -1,19 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { getInitialUsers } from "../services/userServices";
-
+import PageHeader from "./PageHeader";
+import ListUsers from "./ListUsers";
 
 const Dashboard: React.FunctionComponent = () => {
-
-    useEffect(() => {
-        getInitialUsers();
-    }, []);
 
     return (
         <Container>
             <Row xs={1} md={12} className="topHeader">
-                <h3>Welcome..</h3>
+                <PageHeader />
+                <ListUsers />
             </Row>
         </Container>
     )

@@ -1,31 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
+import { BrightnessHigh, Moon } from 'react-bootstrap-icons';
 import './Style.css';
-import { Link } from "react-router-dom";
-import { Col, Form, Row } from "react-bootstrap";
-
+import { Col, Row } from "react-bootstrap";
+import AppContext from "../AppContext/AppContext";
 
 const Layout: React.FunctionComponent = (props) => {
+
+    const { isLightTheme, setIsLightTheme } = useContext(AppContext);
 
     useEffect(() => {
         document.title = 'GitHub User Search';
     }, []);
 
+    const onLightThemeClick = useCallback(() => {
+        setIsLightTheme(true);
+    }, []);
+
+    const onDarkThemeClick = useCallback(() => {
+        setIsLightTheme(false);
+    }, []);
+
     return (
-        <Container>
-            <div className="layoutBody">
-                <Row>
-                    <Col className="navHeader">
-                        <div>DevFinder</div>
-                        <div>Light</div>
-                    </Col>
-                </Row>
-                <Row>
-                    {props.children}
-                </Row>
-            </div>
-        </Container>
+        <div className={isLightTheme ? "lightAppBody" : "darkAppBody"}>
+            <Container>
+                <div className="layoutBody">
+                    <Row>
+                        <Col className="navHeader">
+                            <div>DevFinder</div>
+                            {isLightTheme ? (
+                                <div onClick={onDarkThemeClick} className="themeBtn">
+                                    <Moon size={16} /> Dark
+                                </div>
+                            ) : (
+                                <div onClick={onLightThemeClick} className="themeBtn">
+                                    <BrightnessHigh size={16} /> Light
+                                </div>
+
+                            )}
+                        </Col>
+                    </Row>
+                    <Row>
+                        {props.children}
+                    </Row>
+                </div>
+            </Container>
+        </div>
     )
 }
 
